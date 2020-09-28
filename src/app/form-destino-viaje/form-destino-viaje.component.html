@@ -1,0 +1,18 @@
+<form [formGroup]="fg" (ngSubmit)="guardar(fg.controls['nombre'].value, fg.controls['url'].value)" >
+  <div class="form-group">
+    <label for="nombre">Nombre</label>
+    <input type="text" class="form-control" id="nombre" [formControl]="fg.controls['nombre']" placeholder="Ingresar nombre..." #nombre />
+    <ul>
+      <li *ngFor="let result of searchResults" >{{result}}</li>
+    </ul>
+    <div *ngIf="fg.controls['nombre'].hasError('required')">Nombre requerido!</div>
+    <div *ngIf="fg.controls['nombre'].hasError('invalidNombre')">Nombre debe tener al menos {{minLongitud}} de largo!</div>
+    <div *ngIf="fg.controls['nombre'].hasError('minLongNombre')">Nombre invalido!</div>
+  </div>
+  <div class="form-group">
+    <label for="Imagen	Url">Imagen Url</label>
+    <input type="text" class="form-control" id="imagenUrl" [formControl]="fg.controls['url']" placeholder="Ingresar	url..." #url />
+    <div *ngIf="fg.controls['url'].hasError('required')">Nombre invalido</div>
+  </div>
+  <button *ngIf="fg.valid" type="submit" class="btn btn-primary" (click)="guardar(nombre.value,url.value)">Guardar!</button>
+</form>
